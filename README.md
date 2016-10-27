@@ -1,4 +1,4 @@
-# Fed Up
+# Fed Up!
 A front-end boilerplate to quickly start projects.
 ### Features
 * [Nunjucks](https://mozilla.github.io/nunjucks/) templating, HTML minify

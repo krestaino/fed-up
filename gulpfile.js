@@ -1,5 +1,3 @@
-var productionUrl = 'http://cdn.shure.com/';
-
 var gulp            = require('gulp'),
     plugins         = require('gulp-load-plugins')(),
 
@@ -9,6 +7,27 @@ var gulp            = require('gulp'),
     fs              = require('fs'),
     package         = require('./package.json'),
     runSequence     = require('run-sequence');
+
+// load productionUrl from file
+var productionUrl = fs.readFileSync("./.production-url", "utf8");
+
+gulp.task('default', ['dev']);
+
+gulp.task('dev', function(done) {
+  runSequence('build', 'browser-sync', function() {
+    done();
+  });
+
+  gulp.watch(['./src/**/*.njk', './src/data/*.json'], ['nunjucks']);
+  gulp.watch('./src/scss/**/*.scss', ['css']);
+  gulp.watch('./src/js/**/*.js', ['js']);
+});
+
+gulp.task('build', function(done) {
+  runSequence('clean', 'nunjucks', 'css', 'js', 'assets', function() {
+    done();
+  });
+});
 
 gulp.task('browser-sync', function() {
   browserSync.init(null, {
@@ -24,18 +43,6 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('dev', ['build', 'browser-sync'], function () {
-  gulp.watch(['./src/**/*.njk', './src/data/*.json'], ['nunjucks']);
-  gulp.watch('./src/scss/**/*.scss', ['css']);
-  gulp.watch('./src/js/**/*.js', ['js']);
-});
-
-gulp.task('build', function(done) {
-  runSequence('clean', 'nunjucks', 'css', 'js', 'assets', function() {
-    done();
-  });
-});
-
 gulp.task('nunjucks', function() {
   var languages = fs.readdirSync('./src/data/');
   languages.forEach(function(language) {
@@ -46,6 +53,8 @@ gulp.task('nunjucks', function() {
       .pipe(plugins.nunjucksRender({
         path: ['src/pages/templates']
       }))
+      .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
+      .pipe(plugins.if(argv.production, plugins.htmlmin({collapseWhitespace: true})))
       .pipe(gulp.dest('dist/' + language.slice(0, -5)))
       .pipe(browserSync.reload({stream: true}));
   });

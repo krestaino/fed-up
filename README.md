@@ -8,7 +8,7 @@ A front-end boilerplate to quickly start projects.
 * Production and development build tasks
 
 ## Dependencies
-Node.js v4.5.0 or higher
+[Node.js](https://nodejs.org/en/) v4.5.0 or higher
 
 ## Setup
 ```
@@ -19,6 +19,8 @@ $ npm install
 
 ## Development
 ```
+$ gulp dev
+or
 $ gulp
 ```
 * Runs ```build```
@@ -44,8 +46,8 @@ $ gulp build --production
 ```
 $ gulp nunjucks
 ```
-* Processes ```.njk``` files from ```./src/pages```
-* Languages are built from ```./src/data*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es```.
+* Compiles ```.njk``` files from ```./src/pages/```
+* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
 
 ---
 ```
@@ -68,10 +70,10 @@ $ gulp js
 ```
 $ gulp assets
 ```
-* Moves ```./src/font/**/*``` and ```./src/img*``` to ```./dist```
+* Moves ```./src/assets/**/*``` to ```./dist/assets/```
 
 ---
 ```
 $ gulp clean
 ```
-* Deletes all files and folders from ```./dist```
+* Deletes all files and folders from ```./dist/```

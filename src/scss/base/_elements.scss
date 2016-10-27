@@ -10,9 +10,9 @@
 
 html {
   box-sizing: border-box;
-  font-family: $avenir;
+  font-family: $opensans;
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -58,7 +58,7 @@ h1, h2, h3 {
 }
 
 h1, h2 {
-  font-weight: bold;
+  font-weight: 700;
   letter-spacing: -0.12rem;
   line-height: 1;
 }
@@ -102,7 +102,7 @@ p + p {
 }
 
 strong {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 ul {

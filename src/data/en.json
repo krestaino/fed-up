@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "language": "en"
+  },
+
+  "pages": {
+    "index": {
+      "helloSection": {
+        "title": "Fed Up!",
+        "copy": "A front-end boilerplate to quickly start projects.",
+        "foods": [
+          {
+            "item": "Apple"
+          },
+          {
+            "item": "Pizza"
+          },
+          {
+            "item": "Ice Cream"
+          }
+        ]
+      }
+    }
+  }
+}

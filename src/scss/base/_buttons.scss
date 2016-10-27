@@ -1,0 +1,41 @@
+.button {
+  align-items: center;
+  border: 1px solid;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  justify-content: center;
+  letter-spacing: 0.09rem;
+  line-height: 1.25;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $white;
+    color: $dark-gray;
+  }
+
+  &.dark-overlay {
+    background-color: $dark-overlay;
+
+    &:hover {
+      background-color: $white;
+      color: $dark-gray;
+    }
+  }
+
+  &.light-overlay {
+    background-color: $light-overlay;
+
+    &:hover {
+      background-color: $white;
+      color: $dark-gray;
+    }
+  }
+}

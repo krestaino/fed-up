@@ -1,0 +1,11 @@
+<section class="hello">
+  <div class="container">
+    <h2>{{ pages[page].helloSection.title | safe }}</h2>
+    <p>{{ pages[page].helloSection.copy }}</p>
+    <ul>
+      {% for food in pages[page].helloSection.foods %}
+        <li>{{ food.item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

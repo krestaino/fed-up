@@ -1,0 +1,116 @@
+::selection {
+  background: rgba(0,0,0,0.66);
+  color: $white;
+}
+
+*::-webkit-media-controls-start-playback-button {
+  display: none!important;
+  -webkit-appearance: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $avenir;
+  font-size: 16px;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: $phone) {
+    font-size: 15px;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.75;
+  margin: auto;
+  max-width: 1240px;
+  overflow: visible;
+  padding: 3rem 2rem;
+  position: relative;
+  width: 100%;
+
+  @media (min-width: $cinema) {
+    max-width: 1440px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 3rem 1rem;
+  }
+}
+
+h1, h2, h3 {
+  color: inherit;
+  line-height: 1;
+  position: relative;
+  text-transform: uppercase;
+
+  sup {
+    font-size: 50%;
+    vertical-align: top;
+  }
+}
+
+h1, h2 {
+  font-weight: bold;
+  letter-spacing: -0.12rem;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 5.875rem;
+
+  @media (max-width: $tablet) {
+    font-size: 4rem;
+  }
+}
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  @media (max-width: $tablet) {
+    font-size: 3.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.125rem;
+  letter-spacing: 0.09rem;
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  line-height: 1.875;
+  margin-top: 0;
+}
+
+p + p {
+  margin-top: 2rem;
+}
+
+strong {
+  font-weight: bold;
+}
+
+ul {
+  list-style: disc;
+  margin-left: 2rem;
+  margin-top: 2rem;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+}

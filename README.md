@@ -1,5 +1,5 @@
 # Fed Up!
-A front-end boilerplate to quickly start projects.
+A front-end boilerplate for quick project setup.
 ### Features
 * [Nunjucks](https://mozilla.github.io/nunjucks/) templating, HTML minify
 * Sass compile, autoprefix, minify, and source maps

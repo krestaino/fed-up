@@ -6,7 +6,7 @@ A front-end boilerplate for quick project setup.
 * JS concatenate
 * Browsers are automatically updated on file save
 * Inlines SVG
-* Production and development build tasks
+* Development and production build tasks
 
 ## Dependencies
 [Node.js](https://nodejs.org/en/) v4.5.0 or higher
@@ -21,18 +21,17 @@ $ npm install
 ## Development
 ```
 $ gulp dev
-or
-$ gulp
 ```
 * Runs ```build```
 * Launches Browsersync at [http://localhost:3000/](http://localhost:3000/)
-* Watches  ```.njk```, ```.json```, ```.scss```, and ```.js``` files. Browsers are automatically updated as you change files.
+* Watches  ```.njk```, ```.json```, ```.scss```, and ```.js``` files and reloads browsers on save
 
+Note: ```gulp``` alone is shorthand for ```gulp dev```
 ## Build
 ```
 $ gulp build
 ```
-* Runs ```clean```,```nunjucks```,```css```,```js```,```assets```
+* Runs ```clean```,```nunjucks```,```css```,```js```, and ```assets```
 
 ## Production
 ```
@@ -40,7 +39,7 @@ $ gulp build --production
 ```
 * Minifies ```.html```, ```.css```, ```.js```
 * Skips creating source maps
-* Replaces relative URLs with ```productionUrl``` (line 1 gulpfile.js)
+* Replaces "```/assets/```" in ```.njk```,```.scss```, and ```.js``` files  with ```./.production-url``` file contents
 
 ## Gulp Tasks
 
@@ -49,7 +48,7 @@ $ gulp nunjucks
 ```
 * Compiles ```.njk``` files from ```./src/pages/```
 * Replaces ```<img src="*.svg">``` with inlined SVG 
-* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
+* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```
 
 ---
 ```

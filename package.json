@@ -1,8 +1,9 @@
 {
   "name": "fed-up",
   "title": "fed-up",
+  "description": "A front-end boilerplate to quickly start projects.",
   "author": "Kevin Restaino",
-  "url": "",
+  "homepage": "example.com",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
@@ -21,6 +22,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-cssnano": "^2.1.0",
     "gulp-data": "^1.2.1",
+    "gulp-header": "^1.8.8",
     "gulp-html-prettify": "0.0.1",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",

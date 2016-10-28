@@ -8,6 +8,20 @@ var gulp            = require('gulp'),
     package         = require('./package.json'),
     runSequence     = require('run-sequence');
 
+// using data from package.json 
+var banner = ['/*!',
+  ' * <%= pkg.name %> v<%= pkg.version %>',
+  ' * <%= pkg.description %>',
+  ' * <%= pkg.homepage %>',
+  ' *',
+  ' * Copyright <%= pkg.author %>',
+  ' * Released under the <%= pkg.license %> license',
+  ' *',
+  ' * Date ' + new Date(),
+  ' */',
+  '',
+  ''].join('\n');
+
 // load productionUrl from file
 var productionUrl = fs.readFileSync("./.production-url", "utf8");
 
@@ -72,6 +86,7 @@ gulp.task('css', function () {
     .pipe(plugins.rename({ suffix: '.min' }))
     .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
+    .pipe(plugins.header(banner, { pkg : package } ))
     .pipe(gulp.dest('./dist/assets/css'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -84,6 +99,7 @@ gulp.task('js',function(){
     .pipe(plugins.rename({ suffix: '.min' }))
     .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
+    .pipe(plugins.header(banner, { pkg : package } ))
     .pipe(gulp.dest('./dist/assets/js'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });

@@ -1,10 +1,10 @@
 # Fed Up!
 A front-end boilerplate for quick project setup.
 ### Features
-* [Nunjucks](https://mozilla.github.io/nunjucks/) templating, HTML minify
-* Sass compile, autoprefix, minify, and source maps
-* JS concatenate and minify
-* Browsers are automatically updated as you change files
+* [Nunjucks](https://mozilla.github.io/nunjucks/) templating
+* Sass compile, autoprefix, and source maps
+* JS concatenate
+* Browsers are automatically updated on file save
 * Inlines SVG
 * Production and development build tasks
 
@@ -34,7 +34,7 @@ $ gulp build
 ```
 * Runs ```clean```,```nunjucks```,```css```,```js```,```assets```
 
-## Build Production
+## Production
 ```
 $ gulp build --production
 ```

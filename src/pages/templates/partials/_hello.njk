@@ -2,6 +2,7 @@
   <div class="container">
     <h2>{{ pages[page].helloSection.title | safe }}</h2>
     <p>{{ pages[page].helloSection.copy }}</p>
+    <img class="icon" src="/src/assets/icons/ic_refresh_48px.svg">
     <ul>
       {% for food in pages[page].helloSection.foods %}
         <li>{{ food.item }}</li>

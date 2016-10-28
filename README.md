@@ -5,6 +5,7 @@ A front-end boilerplate for quick project setup.
 * Sass compile, autoprefix, minify, and source maps
 * JS concatenate and minify
 * Browsers are automatically updated as you change files
+* Inlines SVG to HTML
 * Production and development build tasks
 
 ## Dependencies
@@ -47,6 +48,7 @@ $ gulp build --production
 $ gulp nunjucks
 ```
 * Compiles ```.njk``` files from ```./src/pages/```
+* Replaces ```<img src="*.svg">``` with inlined SVG 
 * Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
 
 ---

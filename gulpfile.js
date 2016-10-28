@@ -53,6 +53,7 @@ gulp.task('nunjucks', function() {
       .pipe(plugins.nunjucksRender({
         path: ['src/pages/templates']
       }))
+      .pipe(plugins.injectSvg())
       .pipe(plugins.htmlPrettify({indent_char: ' ', indent_size: 2}))
       .pipe(plugins.removeEmptyLines())
       .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))

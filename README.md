@@ -4,7 +4,7 @@ A front-end boilerplate for quick project setup.
 * [Nunjucks](https://mozilla.github.io/nunjucks/) templating
 * Sass compile, autoprefix, and source maps
 * JS concatenate
-* Browsers are automatically updated on file save
+* Browsers reload on file save
 * Inlines SVG
 * Development and production build tasks
 
@@ -48,7 +48,7 @@ $ gulp nunjucks
 ```
 * Compiles ```.njk``` files from ```./src/pages/```
 * Replaces ```<img src="*.svg">``` with inlined SVG 
-* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```
+* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
 
 ---
 ```

@@ -5,7 +5,7 @@ A front-end boilerplate for quick project setup.
 * Sass compile, autoprefix, minify, and source maps
 * JS concatenate and minify
 * Browsers are automatically updated as you change files
-* Inlines SVG to HTML
+* Inlines SVG
 * Production and development build tasks
 
 ## Dependencies

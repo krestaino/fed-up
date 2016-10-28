@@ -53,6 +53,8 @@ gulp.task('nunjucks', function() {
       .pipe(plugins.nunjucksRender({
         path: ['src/pages/templates']
       }))
+      .pipe(plugins.htmlPrettify({indent_char: ' ', indent_size: 2}))
+      .pipe(plugins.removeEmptyLines())
       .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
       .pipe(plugins.if(argv.production, plugins.htmlmin({collapseWhitespace: true})))
       .pipe(gulp.dest('dist/' + language.slice(0, -5)))
@@ -65,9 +67,9 @@ gulp.task('css', function () {
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass().on('error', plugins.sass.logError))
     .pipe(plugins.autoprefixer('last 4 version'))
-    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.cssnano({discardComments: false}))
     .pipe(plugins.replace({ suffix: '.min' }))
+    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
     .pipe(gulp.dest('./dist/assets/css'))
     .pipe(browserSync.reload({stream: true}));
@@ -78,8 +80,8 @@ gulp.task('js',function(){
     .pipe(plugins.include())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.uglify({preserveComments:"license"}))
-    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.replace({ suffix: '.min' }))
+    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
     .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
     .pipe(gulp.dest('./dist/assets/js'))
     .pipe(browserSync.reload({stream: true, once: true}));

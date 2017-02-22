@@ -32,7 +32,6 @@ html {
   margin: auto;
   max-width: 1240px;
   overflow: visible;
-  padding: 3rem 2rem;
   position: relative;
   width: 100%;
 
@@ -42,6 +41,10 @@ html {
 
   @media (max-width: $tablet) {
     padding: 3rem 1rem;
+  }
+
+  &.-row {
+    flex-direction: row;
   }
 }
 

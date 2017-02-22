@@ -22,9 +22,6 @@ var banner = ['/*!',
   '',
   ''].join('\n');
 
-// load productionUrl from file
-var productionUrl = fs.readFileSync("./.production-url", "utf8");
-
 gulp.task('default', ['dev']);
 
 gulp.task('dev', function(done) {
@@ -57,20 +54,22 @@ gulp.task('browser-sync', function() {
   });
 });
 
+var data = JSON.parse(fs.readFileSync("./src/data/en.json", "utf8"));
+
 gulp.task('nunjucks', function() {
   var languages = fs.readdirSync('./src/data/');
   languages.forEach(function(language) {
-    return gulp.src('src/pages/*.njk')
+    return gulp.src('src/html/pages/*.njk')
       .pipe(plugins.data(function() {
         return JSON.parse(fs.readFileSync('./src/data/' + language))
       }))
       .pipe(plugins.nunjucksRender({
-        path: ['src/pages/templates']
+        path: ['src/html/partials']
       }))
       .pipe(plugins.injectSvg())
       .pipe(plugins.htmlPrettify({indent_char: ' ', indent_size: 2}))
       .pipe(plugins.removeEmptyLines())
-      .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
+      .pipe(plugins.if(!argv.production, plugins.replace(data.assets, '/assets/')))
       .pipe(plugins.if(argv.production, plugins.htmlmin({collapseWhitespace: true})))
       .pipe(gulp.dest('dist/' + language.slice(0, -5)))
       .pipe(browserSync.reload({stream: true}));
@@ -78,26 +77,29 @@ gulp.task('nunjucks', function() {
 });
 
 gulp.task('css', function () {
-  return gulp.src('./src/scss/main.scss')
-    .pipe(plugins.sourcemaps.init())
+  return gulp.src('./src/scss/app.scss')
+    .pipe(plugins.sassGlobImport())
+    .pipe(plugins.sourcemaps.init()) 
     .pipe(plugins.sass().on('error', plugins.sass.logError))
     .pipe(plugins.autoprefixer('last 4 version'))
     .pipe(plugins.cssnano({discardComments: false}))
     .pipe(plugins.rename({ suffix: '.min' }))
-    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
-    .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
+    .pipe(plugins.if(argv.production, plugins.replace('{{ assets }}', data.assets)))
+    .pipe(plugins.if(!argv.production, plugins.replace('{{ assets }}', '/assets/')))
     .pipe(plugins.header(banner, { pkg : package } ))
+    .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
     .pipe(gulp.dest('./dist/assets/css'))
     .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('js',function(){
-  gulp.src('./src/js/main.js')
+  gulp.src('./src/js/app.js')
     .pipe(plugins.include())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.uglify({preserveComments:"license"}))
     .pipe(plugins.rename({ suffix: '.min' }))
-    .pipe(plugins.if(argv.production, plugins.replace('/assets/', productionUrl)))
+    .pipe(plugins.if(argv.production, plugins.replace('{{ assets }}', data.assets)))
+    .pipe(plugins.if(!argv.production, plugins.replace('{{ assets }}', '/assets/')))
     .pipe(plugins.if(!argv.production, plugins.sourcemaps.write()))
     .pipe(plugins.header(banner, { pkg : package } ))
     .pipe(gulp.dest('./dist/assets/js'))
@@ -106,7 +108,6 @@ gulp.task('js',function(){
 
 gulp.task('assets', function () {
   gulp.src(['./src/assets/**/*']).pipe(gulp.dest('./dist/assets'));
-  gulp.src(['./src/js/vendor/jquery.min.js']).pipe(gulp.dest('./dist/assets/js/vendor'));
 });
 
 gulp.task('clean', function () {

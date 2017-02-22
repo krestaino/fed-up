@@ -1,0 +1,12 @@
+nav {
+  background-color: $dark-gray;
+  color: $white;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  a + a {
+    margin-left: 1rem;
+  }
+}

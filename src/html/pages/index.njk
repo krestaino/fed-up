@@ -1,17 +1,17 @@
 {% set page = "index" %}
 
-{% extends "_layout.njk" %}
+{% extends "layout/default.njk" %}
 
 {% block app %}
-  {% include '_nav.njk' %}
+  {% include 'partials/_nav.njk' %}
 
   <section class="hello">
     <div class="container">
-      <h2>{{ pages[page].helloSection.title | safe }}</h2>
-      <p>{{ pages[page].helloSection.copy }}</p>
+      <h2>{{ title | safe }}</h2>
+      <p>{{ copy }}</p>
       <img class="icon" src="/src/assets/icons/ic_refresh_48px.svg">
       <ul>
-        {% for food in pages[page].helloSection.foods %}
+        {% for food in foods %}
           <li>{{ food.item }}</li>
         {% endfor %}
       </ul>

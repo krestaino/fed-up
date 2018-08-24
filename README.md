@@ -1,15 +1,15 @@
 # Fed Up!
-A front-end boilerplate for quick project setup.
-### Features
+A front-end boilerplate for scaffolding static projects.
+
+## Features
 * [Nunjucks](https://mozilla.github.io/nunjucks/) templating
-* Sass compile, autoprefix, and source maps
-* JS concatenate
-* Browsers reload on file save
-* Inlines SVG
-* Development and production build tasks
+* Inline SVG
+* SCSS compile, autoprefix, minification, and source maps
+* ES6/ES7 transpilation, minification, and source maps
+* Hot-reload on file save
 
 ## Dependencies
-[Node.js](https://nodejs.org/en/) v4.5.0 or higher
+[Node.js](https://nodejs.org/en/) 8 LTS
 
 ## Setup
 ```
@@ -20,41 +20,31 @@ $ npm install
 
 ## Development
 ```
-$ gulp dev
+$ npm start
 ```
-* Runs ```build```
+* Runs ```gulp build```
 * Launches Browsersync at [http://localhost:3000/](http://localhost:3000/)
-* Watches  ```.njk```, ```.json```, ```.scss```, and ```.js``` files and reloads browsers on save
+* Watches  ```.njk```, ```.json```, ```.scss```, and ```.js``` files with hot-reloading.
 
-Note: ```gulp``` alone is shorthand for ```gulp dev```
 ## Build
 ```
-$ gulp build
+$ npm run build
 ```
-* Runs ```clean```,```nunjucks```,```css```,```js```, and ```assets```
-
-## Production
-```
-$ gulp build --production
-```
-* Minifies ```.html```, ```.css```, ```.js```
-* Skips creating source maps
-* Replaces "```/assets/```" in ```.njk```,```.scss```, and ```.js``` files  with ```./.production-url``` file contents
+* Runs ```gulp clean```,```gulp nunjucks```,```gulp css```,```gulp js```, and ```gulp assets```
 
 ## Gulp Tasks
-
 ```
 $ gulp nunjucks
 ```
-* Compiles ```.njk``` files from ```./src/pages/```
+* Compiles ```.njk``` files from ```./src/html/pages/```
 * Replaces ```<img src="*.svg">``` with inlined SVG 
-* Languages are built from ```./src/data/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
+* Languages are built from ```./src/i18n/*.json``` files. By default, only ```en.json``` exists. Adding ```es.json``` will automatically build out Spanish pages to ```./dist/es/```.
 
 ---
 ```
-$ gulp css
+$ gulp scss
 ```
-* Sass compile
+* SCSS compile
 * Autoprefix
 * Minify
 * Source maps
@@ -63,7 +53,7 @@ $ gulp css
 ```
 $ gulp js
 ```
-* Concatenate
+* ES6/ES7 transpilation
 * Minify
 * Source maps
 

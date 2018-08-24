@@ -28,17 +28,11 @@ $ npm start
 
 ## Production
 ```
-$ gulp build --production
+$ npm run build
 ```
 * Minifies ```.html```, ```.css```, ```.js```
 * Skips creating source maps
 * Replaces relative URLs with the `PRODUCTION_URL` environmental variable set in `.env`
-
-## Build
-```
-$ npm run build
-```
-* Runs ```gulp clean```,```gulp nunjucks```,```gulp css```,```gulp js```, and ```gulp assets```
 
 ## Gulp Tasks
 ```

@@ -1,10 +1,6 @@
-const APP = {
-  init () {
-    this.log()
-  },
-  log () {
-    console.log('wow')
+const app = new Vue({ 
+  el: '#app',
+  data: {
+    title: 'Fed Up!'
   }
-}
-
-APP.init()
+})

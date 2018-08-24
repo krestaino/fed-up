@@ -32,3 +32,4 @@ $RECYCLE.BIN/
 .ftppass
 dist/*
 !dist/.gitkeep
+.env
